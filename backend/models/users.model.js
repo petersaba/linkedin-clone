@@ -5,9 +5,13 @@ const { stringify } = require('querystring');
 const EMAIL_PATTERN = /\w{3,}@\w{3,}\.\w{2,}/;
 
 const userSchema = mongoose.Schema({
-    name: {
+    first_name: {
         type: String,
-        required: 'Name is required'
+        required: 'First name is required'
+    },
+    last_name: {
+        type: String,
+        required: 'Last name is required'
     },
     email: {
         type: String,
@@ -26,11 +30,21 @@ const userSchema = mongoose.Schema({
         required: 'User type is required',
         enum: ['worker', 'company']
     },
+    headline: {
+        type: String,
+        required: 'Headline is required'
+    },
+    additional_name: {
+        type: String,
+    },
     about: {
         type: String
     },
     location: {
         type: String
+    },
+    date_of_birth: {
+        type: String,
     },
     profile_url: {
         type: String
@@ -43,4 +57,4 @@ const userSchema = mongoose.Schema({
     }
 });
 
-module.exports.model = mongoose.model('User', userSchema);
+module.exports.User = mongoose.model('User', userSchema);
