@@ -41,7 +41,8 @@ const userSchema = mongoose.Schema({
         type: String
     },
     location: {
-        type: String
+        type: String,
+        required: 'Location is required'
     },
     date_of_birth: {
         type: String,
