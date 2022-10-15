@@ -17,10 +17,16 @@ module.exports.signup = async (req, res) => {
             user.date_of_birth = params.date_of_birth;
         } 
 
+        // saving the user with the password but deleting it when returning the user in the response
         await user.save();
-        res.json(user);
+        user.password = undefined;
+
+        res.status(201).json({ status: "Success",
+                                message: user });
     }catch(err){
         console.log('Error from database');
         console.log(err._message);
+        res.status(400).json({ status: 'Error',
+                                message: err._message})
     }
 }
