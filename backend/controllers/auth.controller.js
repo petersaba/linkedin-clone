@@ -21,12 +21,39 @@ module.exports.signup = async (req, res) => {
         await user.save();
         user.password = undefined;
 
-        res.status(201).json({ status: "Success",
-                                message: user });
+        res.status(201).json({ 
+            status: "Success",
+            message: user
+        });
     }catch(err){
         console.log('Error from database');
         console.log(err._message);
-        res.status(400).json({ status: 'Error',
-                                message: err._message})
+        res.status(400).json({ 
+            status: 'Error',
+            message: err._message
+        });
     }
+}
+
+module.exports.login = async (req, res) => {
+    const { email, password } = req.fields;
+    const invalid_message = 'Invalid credentials';
+
+    const user = await User.findOne({email}).select('+password');
+    if(!user){
+        res.status(404).json({
+            status: 'Error',
+            message: invalid_message
+        });
+    }
+    const is_match = await bcrypt.compare(password, user.password);
+    if(is_match){
+        res.status(200).json({
+            status: 'Success',
+        });
+    }
+    res.status(404).json({
+        status: 'Error',
+        message: invalid_message
+    });
 }
