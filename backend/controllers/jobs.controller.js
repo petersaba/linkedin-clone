@@ -65,13 +65,21 @@ module.exports.getAllJobs = async (req, res) => {
         });
     }
 
+    
+}
+
+module.exports.getJobById = async (req, res) =>{
     try{
         const job = await Job.findById(req.query.id);
         
+        return res.status(200).json({
+            status: 'Success',
+            message: job
+        });
     }catch(err){
         res.status(404).json({
             status: 'Error',
-            message: "Job doesn't exist"
+            message: err._message
         });
     }
 }
