@@ -1,5 +1,6 @@
 const { User } = require('../models/users.model');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 
 module.exports.signup = async (req, res) => {
@@ -48,8 +49,20 @@ module.exports.login = async (req, res) => {
     }
     const is_match = await bcrypt.compare(password, user.password);
     if(is_match){
-        res.status(200).json({
+        const token = jwt.sign({
+                id: user.id,
+                email: user.email, 
+                user_type: user.user_type
+            }, 
+            process.env.SECRET_KEY,
+            {
+                expiresIn: '12h'
+            });
+        user.password = undefined;
+        user._doc.token = token;
+        return res.status(200).json({
             status: 'Success',
+            message: user
         });
     }
     res.status(404).json({
