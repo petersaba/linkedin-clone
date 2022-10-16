@@ -1,6 +1,5 @@
 const { match } = require('assert');
 const mongoose = require('mongoose');
-const { stringify } = require('querystring');
 
 const EMAIL_PATTERN = /\w{3,}@\w{3,}\.\w{2,}/;
 
