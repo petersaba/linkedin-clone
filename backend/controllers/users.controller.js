@@ -29,3 +29,12 @@ module.exports.editProfile = async (req, res) => {
         message: user
     });
 }
+
+module.exports.getUserData = async (req, res) => {
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json({
+        status: 'Success',
+        message: user
+    });
+}
