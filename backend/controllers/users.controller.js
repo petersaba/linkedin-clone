@@ -39,6 +39,11 @@ module.exports.getUserData = async (req, res) => {
                 message: 'User does not exist'
             });
         }
+
+        return res.status(200).json({
+            status: 'Success',
+            message: user
+        });
     }
 
     const user = await User.findById(req.user.id);
