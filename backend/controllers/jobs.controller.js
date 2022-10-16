@@ -33,4 +33,10 @@ module.exports.deleteJob = async (req, res) => {
             message: 'Job id is required'
         });
     }
+
+    await Job.findByIdAndDelete(req.query.id);
+    res.status(204).json({
+        status: 'Success',
+        message: 'Job deleted successfully'
+    });
 }
