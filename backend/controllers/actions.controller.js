@@ -14,4 +14,12 @@ module.exports.followCompany = async (req, res) => {
             message: 'Company id is required'
         });
     }
+
+    const company = await User.findOne({ id: req.fields.id, user_type: 'company'});
+    if(!company){
+        return res.status(404).json({
+            status: 'Error',
+            message: 'Company does not exist'
+        });
+    }   
 }
