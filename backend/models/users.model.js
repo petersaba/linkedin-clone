@@ -54,6 +54,9 @@ const userSchema = mongoose.Schema({
     },
     website: {
         type: String
+    },
+    job_posts: {
+        type: Array
     }
 });
 
