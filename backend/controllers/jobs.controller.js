@@ -25,3 +25,12 @@ module.exports.createJob = async (req, res) => {
         });
     }
 }
+
+module.exports.deleteJob = async (req, res) => {
+    if(!req.query.id){
+        return res.status(400).json({
+            status: 'Error',
+            message: 'Job id is required'
+        });
+    }
+}
