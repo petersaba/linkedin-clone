@@ -7,4 +7,11 @@ module.exports.followCompany = async (req, res) => {
             message: 'User is not a worker'
         });
     }
+
+    if(!req.fields.id){
+        return res.status(400).json({
+            status: 'Error',
+            message: 'Company id is required'
+        });
+    }
 }
