@@ -65,7 +65,12 @@ module.exports.getAllJobs = async (req, res) => {
         });
     }
 
-    
+    const company_with_jobs = await User.findById(req.query.id).populate('job_posts');    
+
+    res.status(200).json({
+        status: 'Success',
+        message: company_with_jobs.job_posts
+    });
 }
 
 module.exports.getJobById = async (req, res) =>{
