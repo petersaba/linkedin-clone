@@ -1,5 +1,6 @@
 const { match } = require('assert');
 const mongoose = require('mongoose');
+const { type } = require('os');
 
 const EMAIL_PATTERN = /\w{3,}@\w{3,}\.\w{2,}/;
 
@@ -55,9 +56,14 @@ const userSchema = mongoose.Schema({
     website: {
         type: String
     },
-    job_posts: {
-        type: Array
-    }
+    job_posts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Job'
+    }],
+    followers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 module.exports.User = mongoose.model('User', userSchema);
