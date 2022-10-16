@@ -36,7 +36,7 @@ module.exports.deleteJob = async (req, res) => {
 
     try{
         await Job.findByIdAndDelete(req.query.id);
-        res.status(204).json({
+        res.status(200).json({
             status: 'Success',
             message: 'Job deleted successfully'
         });
