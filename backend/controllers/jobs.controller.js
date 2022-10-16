@@ -56,10 +56,22 @@ module.exports.deleteJob = async (req, res) => {
 }
 
 module.exports.getAllJobs = async (req, res) => {
-    const jobs = await Job.find().sort({ date_created: -1 });
+    if(!req.query.id){
+        const jobs = await Job.find().sort({ date_created: -1 });
+        
+        return res.status(200).json({
+            status: 'Success',
+            message: jobs
+        });
+    }
 
-    res.status(200).json({
-        status: 'Success',
-        message: jobs
-    });
+    try{
+        const job = await Job.findById(req.query.id);
+        
+    }catch(err){
+        res.status(404).json({
+            status: 'Error',
+            message: "Job doesn't exist"
+        });
+    }
 }
