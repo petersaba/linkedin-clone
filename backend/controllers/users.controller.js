@@ -31,6 +31,16 @@ module.exports.editProfile = async (req, res) => {
 }
 
 module.exports.getUserData = async (req, res) => {
+    if(req.query.id){
+        const user = await User.findById(req.query.id);
+        if(!user){
+            return res.status(404).json({
+                status: 'Error',
+                message: 'User does not exist'
+            });
+        }
+    }
+
     const user = await User.findById(req.user.id);
 
     res.status(200).json({
