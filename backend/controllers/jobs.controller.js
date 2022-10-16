@@ -54,3 +54,12 @@ module.exports.deleteJob = async (req, res) => {
         });
     }
 }
+
+module.exports.getAllJobs = async (req, res) => {
+    const jobs = await Job.find().sort({ date_created: -1 });
+
+    res.status(200).json({
+        status: 'Success',
+        message: jobs
+    });
+}
