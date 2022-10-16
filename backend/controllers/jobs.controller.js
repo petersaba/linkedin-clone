@@ -66,7 +66,12 @@ module.exports.getAllJobs = async (req, res) => {
     }
 
     const company_with_jobs = await User.findById(req.query.id).populate('job_posts');    
-
+    if(!company_with_jobs || company_with_jobs.user_type != 'company'){
+        return res.status(404).json({
+            status: 'Error',
+            message: 'Company does not exist'
+        });
+    }
     res.status(200).json({
         status: 'Success',
         message: company_with_jobs.job_posts
