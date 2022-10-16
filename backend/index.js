@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 require('./config/config');
 const app = express();
+const { authMiddleware } = require('./middlewares/auth.middleware');
 
 // app.use(express.json()) did not work so I used express-formidable
 const formdidable = require("express-formidable");
@@ -12,7 +13,7 @@ const authRoutes = require('./routes/auth.routes');
 app.use('/auth', authRoutes);
 
 const usersRoutes = require('./routes/users.routes');
-app.use('/users', usersRoutes);
+app.use('/users', authMiddleware, usersRoutes);
 
 app.listen(process.env.PORT_NUMBER, (err) => {
     if(err) console.log(err)
