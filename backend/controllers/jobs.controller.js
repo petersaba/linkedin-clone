@@ -69,6 +69,13 @@ module.exports.getAllJobs = async (req, res) => {
 }
 
 module.exports.getJobById = async (req, res) =>{
+    if(!req.query.id){
+        return res.status(400).json({
+            status: 'Error',
+            message: 'Job id is required'
+        });
+    }
+
     try{
         const job = await Job.findById(req.query.id);
         
