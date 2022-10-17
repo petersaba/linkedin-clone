@@ -114,11 +114,16 @@ module.exports.getAllApplicants = async (req, res) =>{
         });
     }
 
-    const job = await Job.findById(req.query.id);
+    const job = await Job.findById(req.query.id).populate('applicants');
     if(!job){
         return res.status(404).json({
             status: 'Error',
             message: 'Job does not exist'
         });
     }
+
+    res.status(200).json({
+        status: 'Success',
+        message: job.applicants
+    });
 }
