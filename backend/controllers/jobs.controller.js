@@ -1,5 +1,6 @@
 const { Job } = require('../models/jobs.model');
 const { User } = require('../models/users.model');
+const { sendEmailsToUsers } = require('../utilities/utilities');
 
 module.exports.createJob = async (req, res) => {
     try{
@@ -11,6 +12,10 @@ module.exports.createJob = async (req, res) => {
             {
                 $push: { job_posts: job.id }
             });
+
+        const company = await User.findById(req.user.id).populate('followers');
+        const followers = company.followers;
+        sendEmailsToUsers(followers, params.title, params.about);
 
         res.status(200).json({
             status: 'Success',
