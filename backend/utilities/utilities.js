@@ -35,7 +35,7 @@ module.exports.sendEmail = (receiver_email, subject, content) => {
     });
 }
 
-module.exports.sendEmailsToUsers = ( users, subject, content) => {
+module.exports.sendEmailsToUsers = (users, subject, content) => {
     for(const i of users){
         sendEmail(i.email, subject, content);
     }
