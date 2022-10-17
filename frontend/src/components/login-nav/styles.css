@@ -1,5 +1,5 @@
 .login-nav{
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
 }
@@ -33,4 +33,22 @@ button{
     background-color: white;
     border-radius: 50px;
     font-size: 15px;
+    cursor: pointer;
+}
+
+button:first-child{
+    border: 0;
+}
+
+button:first-child:hover{
+    background-color: lightgrey;
+}
+
+button:last-child{
+    border: 1px solid #0a66c2;
+    color: #0a66c2;
+}
+
+button:last-child:hover{
+    background-color: rgba(196, 194, 194, 0.251);
 }
