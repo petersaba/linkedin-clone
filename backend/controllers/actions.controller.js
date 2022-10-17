@@ -93,7 +93,7 @@ module.exports.unfollowCompany = async (req, res) => {
 }
 
 module.exports.applyForJob = async (req, res) => {
-    if(req.fields.id){
+    if(!req.fields.id){
         return res.status(400).json({
             status: 'Error',
             message: 'Job id is required'
@@ -108,5 +108,16 @@ module.exports.applyForJob = async (req, res) => {
         });
     }
 
-    
+    if(job.applicants){    
+        job.applicants = [ req.user.id ];
+    }else{
+        job.applicants.push(req.user.id);
+    }
+
+    await job.save();
+
+    res.status(200).json({
+        status: 'Success',
+        message: 'Successfully applied for job'
+    });
 }
