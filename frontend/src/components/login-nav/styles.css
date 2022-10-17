@@ -1,11 +1,23 @@
-.login-nav > h2{
+.login-nav{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.login-nav > div{
+    display: flex;
+    justify-content: space-between;
+    width: 1100px;
+}
+
+.login-nav > div > h2{
     color: #0a66c2;
     font-size: 32px;
 }
 
-.login-nav > h2 > span {
+.login-nav > div > h2 > span {
     color: white;
     background-color: #0a66c2;
-    padding: 0 2px;
+    padding: 0 3px;
     border-radius: 3px;
 }
