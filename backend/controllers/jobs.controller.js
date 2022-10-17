@@ -127,3 +127,18 @@ module.exports.getAllApplicants = async (req, res) =>{
         message: job.applicants
     });
 }
+
+module.exports.searchJob = async (req, res) => {
+    if(!req.query.search){
+        this.getAllJobs(req, res);
+        return;
+    }
+
+    const pattern = new RegExp(req.query.search, 'i');
+    const jobs = await Job.find({ title: pattern });
+
+    res.status(200).json({
+        status: 'Success',
+        message: jobs
+    });
+}
