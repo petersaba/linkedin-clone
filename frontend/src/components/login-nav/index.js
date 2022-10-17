@@ -6,6 +6,7 @@ const LoginNav = () => {
             <div>
                 <h2>Linked<span>in</span></h2>
                 <div>
+                    <div></div>
                     <button>Join now</button>
                     <button>Sign in</button>
                 </div>

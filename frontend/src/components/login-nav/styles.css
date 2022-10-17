@@ -36,11 +36,11 @@ button{
     cursor: pointer;
 }
 
-button:first-child{
+button:nth-child(2){
     border: 0;
 }
 
-button:first-child:hover{
+button:nth-child(2):hover{
     background-color: lightgrey;
 }
 
@@ -51,4 +51,9 @@ button:last-child{
 
 button:last-child:hover{
     background-color: rgba(196, 194, 194, 0.251);
+}
+
+.login-nav > div > div > div{
+    width: 0px;
+    border: 1px solid lightgray;
 }
