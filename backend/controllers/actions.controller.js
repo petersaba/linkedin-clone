@@ -1,4 +1,5 @@
 const { User } = require('../models/users.model');
+const { Job } = require('../models/jobs.model');
 
 module.exports.followCompany = async (req, res) => {
     if(req.user.user_type != 'worker'){
@@ -89,4 +90,15 @@ module.exports.unfollowCompany = async (req, res) => {
         status: 'Success',
         message: 'Company unfollowed successfully'
     });
+}
+
+module.exports.applyForJob = async (req, res) => {
+    if(req.fields.id){
+        return res.status(400).json({
+            status: 'Error',
+            message: 'Job id is required'
+        });
+    }
+
+    
 }
