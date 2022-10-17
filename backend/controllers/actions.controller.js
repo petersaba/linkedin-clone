@@ -100,5 +100,13 @@ module.exports.applyForJob = async (req, res) => {
         });
     }
 
+    const job = await Job.findById(req.fields.id);
+    if(!job){
+        return res.status(404).json({
+            status: 'Error',
+            message: 'Job does not exist'
+        });
+    }
+
     
 }
