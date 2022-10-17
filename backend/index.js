@@ -18,6 +18,9 @@ app.use('/users', authMiddleware, usersRoutes);
 const jobsRoutes = require('./routes/jobs.routes');
 app.use('/jobs', authMiddleware, jobsRoutes);
 
+const actionsRoutes = require('./routes/actions.routes');
+app.use('/', authMiddleware, actionsRoutes);
+
 app.listen(process.env.PORT_NUMBER, (err) => {
     if(err) console.log(err)
 
