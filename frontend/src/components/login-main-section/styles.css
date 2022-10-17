@@ -22,3 +22,15 @@
     font-size: 55px;
     margin-bottom: 20px;
 }
+
+.main-section > div:first-child > button {
+    width: 400px;
+    background-color: #2977c9;
+    color: white;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.main-section > div:first-child > button:hover{
+    background-color: #1d5590;
+}
