@@ -1,3 +1,5 @@
+import './styles.css';
+
 const LoginNav = () => {
     return(
         <nav className="login-nav">
