@@ -26,3 +26,11 @@
     display: flex;
     gap: 8px;
 }
+
+button{
+    height: 50px;
+    width: 100px;
+    background-color: white;
+    border-radius: 50px;
+    font-size: 15px;
+}
