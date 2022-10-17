@@ -21,3 +21,8 @@
     padding: 0 3px;
     border-radius: 3px;
 }
+
+.login-nav > div > div{
+    display: flex;
+    gap: 8px;
+}
