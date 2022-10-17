@@ -113,4 +113,12 @@ module.exports.getAllApplicants = async (req, res) =>{
             message: 'Job id is required'
         });
     }
+
+    const job = await Job.findById(req.query.id);
+    if(!job){
+        return res.status(404).json({
+            status: 'Error',
+            message: 'Job does not exist'
+        });
+    }
 }
