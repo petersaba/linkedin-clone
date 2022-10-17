@@ -33,9 +33,10 @@ const jobsSchema = mongoose.Schema({
         type: String,
         required: 'About is required'
     },
-    applicants: {
-        type: Array
-    }
+    applicants: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 module.exports.Job = mongoose.model('Job', jobsSchema);
