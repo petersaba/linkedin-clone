@@ -1,0 +1,11 @@
+.input-div{
+    position: relative;
+    width: 400px;
+    height: 50px;
+    
+}
+
+.input-div > input {
+    height: inherit;
+    width: inherit;
+}
