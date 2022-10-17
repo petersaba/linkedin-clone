@@ -1,3 +1,14 @@
 .main-section{
     display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 40px 15px;
+}
+
+.main-section > div > img {
+    width: 700px;
+}
+
+.main-section > div:first-child{
+    width: 590px;
 }
