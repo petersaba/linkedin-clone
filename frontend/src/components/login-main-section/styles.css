@@ -12,3 +12,9 @@
 .main-section > div:first-child{
     width: 590px;
 }
+
+.main-section > div:first-child > h1 {
+    color: #8f5849;
+    font-weight: 100;
+    font-size: 55px;
+}
