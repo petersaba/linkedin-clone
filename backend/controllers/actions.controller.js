@@ -42,11 +42,11 @@ module.exports.followCompany = async (req, res) => {
 
     res.status(200).json({
         status: 'Success',
-        message: 'Companhy followed successfully'
+        message: 'Company followed successfully'
     });
 }
 
-modules.exports.unfollowCompany = async (req, res) => {
+module.exports.unfollowCompany = async (req, res) => {
     if(req.user.user_type != 'worker'){
         return res.status(400).json({
             status: 'Error',
@@ -68,4 +68,25 @@ modules.exports.unfollowCompany = async (req, res) => {
             message: 'Company does not exist'
         });
     }
+
+    const user_index = company.followers.indexOf(req.user.id);
+    // if user does not exists user_index will be -1
+    if(user_index != -1){
+        company.followers.splice(user_index, 1);
+    }
+
+    await company.save();
+    const user = await User.findById(req.user.id);
+
+    const company_index = user.following.indexOf(req.fields.id);
+    if(user_index != -1){
+        user.following.splice(company_index, 1);
+    }
+
+    await user.save();
+
+    res.status(200).json({
+        status: 'Success',
+        message: 'Company unfollowed successfully'
+    });
 }
